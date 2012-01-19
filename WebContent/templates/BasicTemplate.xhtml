@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+      
+<h:head>
+  <title>
+    <ui:insert name="title">
+      #{msgs.windowTitle}
+    </ui:insert>
+  </title>
+    <h:outputStylesheet name="default.css" library="css" />
+</h:head>
+
+<h:body>
+<p:layout fullPage="true">
+
+	<!-- outputScript library java script name target head -->
+	<!-- outputStylesheet library css name target body -->
+	
+	<p:layoutUnit position="north" size="100" header="" resizable="true" closable="false" collapsible="false">
+	<div id="pageHeading">
+	<ui:insert name="heading">
+		<ui:include src="/templates/pageHeading.xhtml"/>
+	</ui:insert>
+	</div>
+	</p:layoutUnit>
+	
+	<p:layoutUnit position="center">
+	<div id="content">
+	  <ui:insert name="content">
+	  </ui:insert>
+	</div>
+	</p:layoutUnit>
+	
+	<div id="footer">
+	  <ui:insert name="footer">
+	    	<ui:include src="/templates/footer.xhtml"/>
+	  </ui:insert>
+	</div>
+	<p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="false" collapsible="false">
+	   <h:form>
+           <li><h:commandLink action="/views/student/home" value="Go to Students Information" /></li>
+		    <li><h:commandLink action="/views/student/list" value="Go to student listing" /></li>
+		    <li><h:commandLink action="/views/student/search" value="Go to Student Search" /></li>
+		 </h:form>
+    </p:layoutUnit>
+	<p:layoutUnit position="east" size="200" header="" resizable="true" closable="true" collapsible="true" effect="drop">
+        <h:outputText value="..." />
+    </p:layoutUnit>
+    
+     <p:layoutUnit position="south" size="100" header="Footer" resizable="true" closable="true" collapsible="true">
+        <h:outputText value="..." />
+    </p:layoutUnit>
+    
+</p:layout>
+</h:body>
+
+</html>
