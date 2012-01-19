@@ -1,0 +1,94 @@
+<ui:composition  
+  xmlns="http://www.w3.org/1999/xhtml"   
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://java.sun.com/jsf/core"
+  template="/templates/BasicTemplate.xhtml">
+<ui:define name="content">
+<h:form id="form">
+ <p:panel header="Student Search">
+    <p:messages />
+    
+	<h:panelGrid columns="3" bgcolor="#eff5fa" cellpadding="5">  
+	
+	<h:outputLabel for="searchAnyName" value="Search Any Name:" title="Search ANY name {not case sensitive}">
+		<h:outputText value="*" style="color:red; float:right"  />
+	</h:outputLabel>
+    <p:autoComplete id="searchAnyName" 
+	    	minQueryLength="3"   
+	    	maxResults="5"  
+	    	required="true"
+	        value="#{studentSearch.name}"
+	        completeMethod="#{studentSearch.completeFindByName}"
+	    >  
+    	
+    	  	<f:ajax event="keyup" listener="#{studentSearch.findByName}" render="searchResults nameMessage" />
+    	
+	</p:autoComplete>
+	<p:message id="nameMessage" for="searchAnyName" style="color:red" />
+	
+	
+	<h:outputLabel value="Gender:">
+	  <h:outputText value="*" style="color:red; float:right"  />
+	</h:outputLabel>
+	<p:selectOneRadio id="searchGender" value="#{studentSearch.gender}" required="true">
+	    <f:selectItem itemValue="Female" itemLabel="Female" />
+	    <f:selectItem itemValue="Male" itemLabel="Male" />
+	    <f:ajax event="blur" render="genderMessage" />
+	</p:selectOneRadio>
+	<p:message id="genderMessage" for="searchGender" style="color:red" />
+	
+	
+
+    <h:outputLabel value="Date of Birth:" />
+    <p:inputText id="searchDOBString" value="#{studentSearch.dobString}" required="false">
+   
+    	<f:ajax event="keyup" listener="#{studentSearch.addHyphensToDOB}" render="searchDOBMessageString searchDOBString" />	
+    </p:inputText>
+    <p:message id="searchDOBMessageString" for="searchDOBString" style="color:red" />
+    
+    <h:outputLabel value="PEN #" title="{9 character field only}"/>
+    <p:inputText id="searchPEN" value="#{studentSearch.pen}" required="false">
+    		<f:validator validatorId="ExactLengthValidator" />
+			<f:attribute name="exactLength" value="9" />
+    	<f:ajax event="blur" render="penMessage" />
+    </p:inputText>
+    <p:message id="penMessage" for="searchPEN" style="color:red" />
+    
+    <h:outputLabel value="Student ID"/>
+	    <p:inputText id="searchStudentID" value="#{studentSearch.id}"
+			required="false" label="Student ID"
+			validator="#{studentSearch.validateStudentID}">
+		</p:inputText>
+	   
+    <p:message id="studentIDMessage" for="searchStudentID" style="color:red" />
+   
+    <p:commandButton id="searchButton" type="submit" value="Search" action="#{studentSearch.search}"  ajax="false" />
+	<p:commandButton value="Reset" type="submit" immediate="true" actionListener="#{studentSearch.clear}">
+	 	<f:ajax listener="#{studentSearch.clear}" render="searchResults" />
+	 	 <f:ajax render="form" /> 
+	 </p:commandButton>
+	  
+	 <p:commandButton  immediate="true" type="reset" value="Clear" ajax="false"/>
+ </h:panelGrid>
+ </p:panel>
+ 
+ <p:panel>
+ <h:outputLabel id="searchResults">
+ <h:outputText value="No students to display" rendered="#{!studentSearch.rendered}"/> 
+	<ui:include src="/views/student/search/results.xhtml">
+		<ui:param name="studentSearch" value="#{studentSearch}" />
+	</ui:include>
+ </h:outputLabel>
+</p:panel>
+
+</h:form>
+
+<h:outputLabel id="debugTEST">
+  <h:outputText value="#{studentSearch.dobString}" rendered="true" /> 
+</h:outputLabel>
+
+</ui:define>
+</ui:composition>
+

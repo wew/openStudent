@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+	
+	    <h:outputLabel value="Student LIST"></h:outputLabel>
+	    <h:outputStylesheet library="css" name="table-style.css"  />
+	    <h:form>
+	    <h:dataTable value="#{student.studentList}" var="s"
+	    	styleClass="order-table"
+	    	headerClass="order-table-header"
+	    	rowClasses="order-table-odd-row,order-table-even-row">
+	 
+	    	<h:column>
+	    		<f:facet name="header">
+	    		 <h:commandLink action="#{student.sortStudentId}">
+	    		 	Student ID
+	    		 </h:commandLink>
+	    		</f:facet>
+	    		<h:commandLink action="#{student.showDetails(s)}" value="#{s.id}"/>
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Legal First Name
+	    		
+	    		</f:facet>
+	    		#{s.legalFirstName}
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Legal Middle Name</f:facet>
+	    		#{s.legalMiddleName}
+	    	</h:column>
+	    	<h:column>
+	    		<f:facet name="header">Legal Last Name</f:facet>
+	    		#{s.legalLastName}
+	    	</h:column>
+	    	
+		</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

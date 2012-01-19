@@ -1,0 +1,74 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"> 
+
+<h:form rendered="#{studentSearch.rendered}">
+	<p:dataTable 	value="#{studentSearch.results}" 
+					var="s"
+					styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row"
+					
+					>
+  
+  	<p:ajax event="rowSelect" listener="#{studentSearch.onRowSelect}"   
+                   update=":form:display :form:growl" oncomplete="studentSearch.show()" />  
+    <p:ajax event="rowUnselect" listener="#{studentSearch.onRowUnselect}" update=":form:growl"/>  
+  
+
+		<p:column>
+			<f:facet name="header">
+				<h:commandLink action="#{student.sortStudentId}">
+	    		 	Student ID
+	    		 </h:commandLink>
+			</f:facet>
+			<h:commandLink action="#{student.showDetails(s)}" value="#{s.id}" />
+		</p:column>
+		<p:column>
+		  <f:facet name="header">PEN</f:facet>
+    		#{s.pen}
+    	</p:column>
+    	
+    	<p:column>
+			<f:facet name="header">Birthdate</f:facet>
+    		<h:outputText value="#{s.birthdate}">
+    		<f:convertDateTime pattern="dd-MMM-yyyy" type="date" />
+    		</h:outputText>
+    	</p:column>
+    	
+    	<p:column>
+			<f:facet name="header">Gender</f:facet>
+    		#{s.gender}
+    	</p:column>
+    	
+		<p:column>
+		<f:facet name="header">Legal Last</f:facet>
+		  		#{s.legalLastName}
+		</p:column>
+		
+		<p:column>
+			<f:facet name="header">Legal First
+	    		
+	    		</f:facet>
+	    		#{s.legalFirstName}
+	    	</p:column>
+		<p:column>
+			<f:facet name="header">Legal Middle</f:facet>
+	    		#{s.legalMiddleName}
+	    	</p:column>
+
+	    <p:column>
+			<f:facet name="header">Usual Last</f:facet>
+    		Usual Last
+    	</p:column>
+    	
+    	<p:column>
+			<f:facet name="header">Usual First</f:facet>
+    		Usual First
+    	</p:column>
+    	
+	</p:dataTable>
+</h:form>
+
+</ui:composition>

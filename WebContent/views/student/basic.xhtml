@@ -1,0 +1,93 @@
+<ui:composition 
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+ <h:form>
+
+  <p:panel header="Basic Student Information" 
+  		   toggleable="true" 
+  		   toggleSpeed="500"  
+           toggleListener="#{student.handleToggle}"  
+           onToggleUpdate="growl">
+
+  	<h:panelGrid columns="3" bgcolor="#eff5fa">
+
+  	    <h:outputLabel value="Student ID:"></h:outputLabel>
+  	    <h:inputText id="studentId" value="#{student.details.id}" disabled="true"/>
+  	    <h:message for="studentId" />
+  	    
+  	    <h:outputLabel value="PEN:"></h:outputLabel>
+  	    <h:inputText id="studentPen" value="#{student.details.pen}" disabled="true"/>
+        <h:message for="studentPen" />
+
+        <h:outputLabel value="Usual Last Name:"/>
+        <h:inputText id="studentUsualLastName" value="#{student.details.usualLastName }"/>
+  		<h:message for="studentUsualLastName" />
+                  
+        <h:outputLabel value="Usual First Name:"/>
+        <h:inputText id="studentUsualFirstName" value="#{student.details.usualFirstName }"/>
+        <h:message for="studentUsualFirstName" />
+        
+        <ui:remove><!-- <h:outputLabel value="Usual Middle Name:"/>  --></ui:remove>
+        <ui:remove><!-- <h:inputText id="studentUsualMiddleName" value="#{student.details.usualMiddleName }"/>  --></ui:remove>
+        <ui:remove><!-- <h:message for="studentUsualMiddleName" />  --></ui:remove>
+      
+        <h:outputLabel value="Legal Last Name:"/>
+        <h:inputText id="studentLegalLastName" value="#{student.details.legalLastName }"/>
+        <h:message for="studentLegalLastName" />
+        
+        <h:outputLabel value="Legal First Name:"/>
+        <h:inputText id="studentLegalFirstName" value="#{student.details.legalFirstName }"/>
+        <h:message for="studentLegalFirstName" />
+           
+        <h:outputLabel value="Legal Middle Name:"/>
+        <h:inputText id="studentLegalMiddleName" value="#{student.details.legalMiddleName }"/>
+        <h:message for="studentLegalMiddleName" />
+        
+
+        <h:outputLabel value="Gender:"/>
+		<h:selectOneRadio id="gender" value="#{student.student.gender}">
+	    	<f:selectItem itemValue="Female" itemLabel="Female" />
+	    	<f:selectItem itemValue="Male" itemLabel="Male" />
+		</h:selectOneRadio>
+		<h:message for="gender" />
+	
+        <h:outputLabel value="Grade:"/>
+        <h:inputText id="studentGrade" value="#{student.details.grade}"/>
+        <h:message for="studentGrade" />
+
+        <h:outputLabel value="Birthdate:"/>
+        <h:inputText id="studentBirthdate" value="#{student.details.birthdate}"/>
+        <h:message for="studentBirthdate" value="dd-MMM-yyyy" >dd-MMM-yyyy</h:message>
+          
+        <h:outputLabel value="Current age:"/>
+        <h:inputText id="studentCurrentAge" value="#{student.currentAge}"/>
+        <h:message for="studentCurrentAge" />
+
+	</h:panelGrid>
+	</p:panel>
+	<p:panel header="Property Address" 
+			 toggleable="true" 
+			 toggleSpeed="500"  
+             toggleListener="#{student.handleToggle}"  
+             onToggleUpdate="growl">  
+  	  <ui:include src="/views/address.xhtml" >
+  	  	<ui:param name="propertyAddress" value="#{student.details.propertyAddress}" />
+  	  </ui:include>
+  	</p:panel>
+  	<p:panel header="Mailing Address" 
+			 toggleable="true" 
+			 toggleSpeed="500"  
+             toggleListener="#{student.handleToggle}"  
+             onToggleUpdate="growl"> 
+    	<ui:include src="/views/address.xhtml" >
+  	  		<ui:param name="mailingAddress" value="#{student.details.mailingAddress}" />
+  	  	</ui:include> 
+    </p:panel>
+    
+	<h:commandButton id="update" value="Update" action="#{student.update}"/>
+ 
+ 
+ </h:form>
+</ui:composition>

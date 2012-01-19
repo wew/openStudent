@@ -1,0 +1,25 @@
+<ui:composition  
+  xmlns="http://www.w3.org/1999/xhtml"   
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  template="/templates/BasicTemplate.xhtml">
+<ui:define name="content">
+
+<p:tabView dynamic="true" cache="false" id="studentsTabView">
+<p:tab title="Home" id="homeTab">
+    <ui:include src="/views/student/basic.xhtml" /> 
+</p:tab>
+<p:tab title="Parents" id="parentsTab">
+    <ui:include src="/views/student/parents.xhtml" />
+</p:tab>
+<p:tab title="Emergency Contacts">
+	<ui:include src="/views/student/emergencyContacts.xhtml" />
+</p:tab>
+<p:tab title="Citizenship">
+	<ui:include src="/views/student/citizenship.xhtml" />
+</p:tab>
+</p:tabView>
+
+</ui:define>
+</ui:composition>
