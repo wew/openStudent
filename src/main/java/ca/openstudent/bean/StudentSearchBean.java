@@ -12,8 +12,13 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.validator.ValidatorException;
 
+import org.primefaces.event.SelectEvent;
+import org.primefaces.examples.domain.Car;
+import org.primefaces.model.LazyDataModel;
+
 import ca.openstudent.Student;
 import ca.openstudent.service.StudentService;
+import ca.openstudent.view.StudentDataModel;
 
 @ManagedBean(name="studentSearch")
 public class StudentSearchBean implements Serializable {
@@ -30,6 +35,8 @@ public class StudentSearchBean implements Serializable {
 	private String id;
 	
 	private Student selectedStudent;
+	private LazyDataModel<Student> studentDataModel;  
+	
 	private int keyCode; 
 	
 	public int getKeyCode() {
@@ -52,6 +59,7 @@ public class StudentSearchBean implements Serializable {
     
 	public StudentSearchBean() {
 		super();
+		studentDataModel = new StudentDataModel(results);  
 	}
 
 	/**
@@ -219,6 +227,19 @@ public class StudentSearchBean implements Serializable {
 
 			this.selectedStudent = selectedStudent;  
 	}  
+	
+	public LazyDataModel<Student> getStudentDataModel() {  
+        return studentDataModel;  
+    }
+
+	//TODO:
+	 public void onRowSelect(SelectEvent event) {
+		 
+		 
+	        //FacesMessage msg = new FacesMessage("Student Selected", ((Student) event.getObject()).getModel());
+
+	        //FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
 
 
 	/**

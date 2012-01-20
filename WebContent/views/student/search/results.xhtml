@@ -5,19 +5,18 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"> 
 
-<h:form rendered="#{studentSearch.rendered}">
+<h:outputStylesheet name="table-style.css" library="css" />
+<h:form id="resultTable" rendered="#{studentSearch.rendered}">
+<p:commandButton id="basic" value="Basic" onclick="studentDialog.show();" type="button" /> 
 	<p:dataTable 	value="#{studentSearch.results}" 
 					var="s"
 					styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row"
 					
 					>
-  
-  	<p:ajax event="rowSelect" listener="#{studentSearch.onRowSelect}"   
-                   update=":form:display :form:growl" oncomplete="studentSearch.show()" />  
-    <p:ajax event="rowUnselect" listener="#{studentSearch.onRowUnselect}" update=":form:growl"/>  
-  
-
+      
+	<p:ajax event="mouseover" execute="studentDialog.show();" /> 
 		<p:column>
+		  
 			<f:facet name="header">
 				<h:commandLink action="#{student.sortStudentId}">
 	    		 	Student ID
@@ -69,6 +68,22 @@
     	</p:column>
     	
 	</p:dataTable>
+	
+	<p:dialog header="Student Detail" widgetVar="studentDialog" resizable="true"  
+              showEffect="explode" hideEffect="explode">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4">  
+  
+            <f:facet name="header">  
+                <p:graphicImage value="/images/students/studentBean.selectedStudent.profileImage.jpg" />  
+            </f:facet>  
+  
+            <h:outputText value="Name:" />  
+            <h:outputText value="#{studentBean.selectedStudent}" style="font-weight:bold" />  
+ 
+        </h:panelGrid>  
+    </p:dialog>  
+	
 </h:form>
 
 </ui:composition>
