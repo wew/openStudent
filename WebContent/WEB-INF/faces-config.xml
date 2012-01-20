@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    version="2.0">
+    <application>
+      <resource-bundle>
+        <base-name>messages</base-name>
+        <var>msgs</var>
+      </resource-bundle>
+      <locale-config>
+      <default-locale>en</default-locale>
+      <supported-locale>en</supported-locale>
+      </locale-config>
+    </application>
+    
+    <!-- /** Converters **/ -->
+    <converter>
+    	<converter-id>provinceConverter</converter-id>
+    	<converter-class>ca.openstudent.converter.ProvinceConverter</converter-class>
+	</converter>
+    
+    <!--  /** Managed Beans **/ -->
+    <managed-bean>
+		<managed-bean-name>loginBean</managed-bean-name>
+		<managed-bean-class>ca.openstudent.auth.LoginBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<!--No ManagedBean declarations here as we are using @ManagedBean Annotations. -->
+	<!-- 
+	<managed-bean>
+		<managed-bean-name>userManagedBean</managed-bean-name>
+		<managed-bean-class>ca.openstudent.bean.UserManagedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	 -->
+	<!--  /** Navigation Rules **/ -->
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>FAIL</from-outcome>
+			<to-view-id>/loginError.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>SUCCESS</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>views/student/search.xhtml</display-name>
+		<from-view-id>/views/student/search.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{studentSearch.search}</from-action>
+			<from-outcome>views/student/search.xhtml</from-outcome>
+			<to-view-id>/views/student/search.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!--  /** Client Behaviors **/ -->
+	<!--  still need to include in tag-lib.xml  -->
+	<behavior>
+	  <behavior-id>foo.behavior.Search</behavior-id>
+	  <behavior-class>ca.openstudent.gui.behavior.SearchBehavior</behavior-class>
+	</behavior>
+
+	<validator>
+		<description></description>
+ 		<display-name>Exact Length Validator</display-name>
+		<validator-id>ExactLengthValidator</validator-id>
+		<validator-class>ca.openstudent.validator.ExactLengthValidator</validator-class>
+	</validator>
+	
+	<validator>
+		<description></description>
+ 		<display-name>Date Of Birth Validator</display-name>
+		<validator-id>DateOfBirthValidator</validator-id>
+		<validator-class>ca.openstudent.validator.DateOfBirthValidator</validator-class>
+	</validator>
+
+</faces-config>
