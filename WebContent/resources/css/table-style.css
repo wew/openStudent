@@ -1,0 +1,22 @@
+.order-table{   
+	border-collapse:collapse;
+}
+
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;/* Dark Grey */
+	border-bottom:1px solid #BBBBBB;
+	padding:10px;
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFF;/* White */
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F4F4F4;/* Light Grey */
+	border-top:1px solid #BBBBBB;
+}
