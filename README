@@ -1,3 +1,28 @@
-test
-test2
+Third Party Jars:
+ bean-validator.jar
+ eclipselink.jar
+ el-impl-2.2.jar
+ javax.ejb.jar
+ javax.faces-2.1.4.jar
+ javax.persistence_2.0.3.v201010191057.jar
+
+Database:
+ postgresql-9.1-901.jdbc3.jar
+
+Logging:
+ log4j-1.2.16.jar
+ slf4j-api-1.6.4.jar
+ slf4j-log4j12-1.6.4.jar
+
+UserInterface(view):
+ cupertino-1.0.2.jar
+ dark-hive-1.0.2.jar
+ primefaces-3.0.RC1.jar
+
+
+Tomcat 7
+- JDBC Realm for logging in, using users and roles in database:
+      <Realm className="org.apache.catalina.realm.JDBCRealm" connectionName="postgres" connectionPassword="DATABASE_PASSWORD" connectionURL="jdbc:postgresql://localhost/DATABASE_NAME" digest="sha-256" driverName="org.postgresql.Driver" roleNameCol="role_name" userCredCol="user_pass" userNameCol="user_name" userRoleTable="user_roles" userTable="users"/>
+      	
+      	
 
