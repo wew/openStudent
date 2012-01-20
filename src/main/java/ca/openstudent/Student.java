@@ -74,8 +74,7 @@ public class Student implements Serializable{
 	
 	
 	public Student(int pen, String gender, Date birthdate, String legalFirstName, String legalMiddleName, String legalLastName) {
-		new Student(pen, gender, birthdate, legalFirstName, legalMiddleName, legalLastName,
-			"", "", "");
+		this(pen, gender, birthdate, legalFirstName, legalMiddleName, legalLastName,"", "", "");
 	}
 	
 	/**
