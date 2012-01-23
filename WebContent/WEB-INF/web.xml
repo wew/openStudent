@@ -5,57 +5,48 @@
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
   </context-param>
-  <welcome-file-list>
-    <welcome-file>faces/welcome.xhtml</welcome-file>
-  </welcome-file-list>
+  
   <servlet>
-    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-name>FacesServlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-name>FacesServlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-name>FacesServlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+
   <security-constraint>
-    <display-name>Tomcat Security Constraint</display-name>
+    <display-name>Security Constraint</display-name>
     <web-resource-collection>
-      <web-resource-name>Default</web-resource-name>
-      <description></description>
-      <url-pattern>/faces/welcome.xhtml</url-pattern>
+      <web-resource-name>XHTML</web-resource-name>
+      <description>openStudent Secure Web Application</description>
+      <url-pattern>*.xhtml</url-pattern>
+
     </web-resource-collection>
     <auth-constraint>
       <description></description>
-      <role-name>manager-gui</role-name>
+      <role-name>manager</role-name>
     </auth-constraint>
   </security-constraint>
+  
   <login-config>
     <auth-method>FORM</auth-method>
     <realm-name>Container Security Login Form</realm-name>
     <form-login-config>
       <form-login-page>/faces/login.xhtml</form-login-page>
-      <form-error-page>/faces/login.xhtml</form-error-page>
+      <form-error-page>/faces/loginError.xhtml</form-error-page>
     </form-login-config>
   </login-config>
   <security-role>
-    <description>Only 'tomcat' role is allowed to access this web application</description>
-    <role-name>manager-gui</role-name>
+    <description>Roles to access this web application</description>
+    <role-name>admin-gui,manager-gui,admin,manager</role-name>
   </security-role>
   
-  
-  <context-param>
-    <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
-    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-    <param-value>client</param-value>
-  </context-param>
-  <context-param>
-    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-    <param-value>resources.application</param-value>
-  </context-param>
   <context-param>
 	<param-name>primefaces.THEME</param-name>
 	<param-value>cupertino</param-value>
@@ -71,4 +62,7 @@
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
+  <welcome-file-list>
+    <welcome-file>faces/welcome.xhtml</welcome-file>
+  </welcome-file-list>
 </web-app>
