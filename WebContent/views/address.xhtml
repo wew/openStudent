@@ -6,27 +6,27 @@
 
 <h:panelGrid columns="3" bgcolor="#eff5fa">
   	 	<h:outputLabel value="Street number &amp; name:"/>
-             <h:inputText id="address1" />
-             <h:message for="address1" />
+             <h:inputText id="#{idprefix}address1" />
+             <h:message for="#{idprefix}address1" />
 
   	 	<h:outputLabel value="Address 2:"/>
-             <h:inputText id="address2" />
-             <h:message for="address2" />
+             <h:inputText id="#{idprefix}address2" />
+             <h:message for="#{idprefix}address2" />
              
              <h:outputLabel value="City:"/>
-             <h:inputText id="city" />
-             <h:message for="city" />
+             <h:inputText id="#{idprefix}city" />
+             <h:message for="#{idprefix}city" />
              
              <h:outputLabel value="Province:"/>
-             <h:selectOneMenu value="#{province.selectedProvince}" id="province">
+             <h:selectOneMenu value="#{province.selectedProvince}" id="#{idprefix}province">
              	<f:selectItems value="#{province.selectProvinces}" />
              	 <f:converter converterId="provinceConverter" />
              </h:selectOneMenu>
-             <h:message for="province" />
+             <h:message for="#{idprefix}province" />
              
              <h:outputLabel value="Postal Code:"/>
-             <h:inputText id="postalCode" />
-             <h:message for="postalCode" />
+             <h:inputText id="#{idprefix}postalCode" />
+             <h:message for="#{idprefix}postalCode" />
 
 </h:panelGrid>
 </ui:composition>

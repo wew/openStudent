@@ -74,6 +74,7 @@
              onToggleUpdate="growl">  
   	  <ui:include src="/views/address.xhtml" >
   	  	<ui:param name="propertyAddress" value="#{student.details.propertyAddress}" />
+  	  	<ui:param name="idprefix" value="property" />
   	  </ui:include>
   	</p:panel>
   	<p:panel header="Mailing Address" 
@@ -83,6 +84,7 @@
              onToggleUpdate="growl"> 
     	<ui:include src="/views/address.xhtml" >
   	  		<ui:param name="mailingAddress" value="#{student.details.mailingAddress}" />
+  	  		<uiaram name="idprefix" value="mail" />
   	  	</ui:include> 
     </p:panel>
     
