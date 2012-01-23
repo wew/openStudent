@@ -1,0 +1,16 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/templates/basicTemplate.xhtml"> 
+<ui:define name="content">
+<h:form>
+  <p:panel header="Create Student">
+    <ui:include src="/views/student/basic.xhtml"/>
+  </p:panel>
+  <h:commandButton id="createStudent" value="Create Student" action="#{studentBean.create}"/>
+</h:form>
+</ui:define>
+</ui:composition>
