@@ -6,16 +6,14 @@
     xmlns:p="http://primefaces.org/ui"> 
 
 <h:outputStylesheet name="table-style.css" library="css" />
-<h:form id="resultTable" rendered="#{studentSearch.rendered}">
-<p:commandButton id="basic" value="Basic" onclick="studentDialog.show();" type="button" /> 
-	<p:dataTable 	value="#{studentSearch.results}" 
-					var="s"
-					styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row"
-					
-					>
-      
-	<p:ajax event="mouseover" execute="studentDialog.show();" /> 
-		<p:column>
+<h:form id="resultTable" rendered="#{studentSearch.rendered}"> 
+	<p:dataTable 	
+		var="s"
+		value="#{studentSearch.results}" 
+		styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row"
+		selection="#{studentSearch.selectedStudent}" selectionMode="single" rowKey="#{s.id}">
+	<p:ajax event="rowSelect" oncomplete="studentDialog.show()" />
+	<p:column>
 		  
 			<f:facet name="header">
 				<h:commandLink action="#{student.sortStudentId}">
