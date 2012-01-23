@@ -1,0 +1,116 @@
+GET ECLIPSE
+
+1. Go to http://www.eclipse.org/downloads
+2. Download the "Eclipse IDE for Java EE Developers"
+3. Unzip it somewhere and run it.
+
+ADD IN EXTRA PACKAGES
+
+1. Go to the workbench
+2. From the menus, choose Help->Install New Software...
+3. Choose the "--All Available Sites--" software site
+4. search for "egit"
+5. Get the "Eclipse EGit" package and restart Eclipse if necessary
+
+GET TOMCAT SERVER
+
+1. From the main menu, choose Window->Preferences
+2. Choose Server->Runtime Environment
+3. Click "Add"
+4. Choose Apache Tomcat v7.0 and click Next
+5. Click the "Download and Install" button
+6. Choose a directory where you want to install Tomcat
+7. Click Browse and point it to the directory where you just installed Tomcat
+8. click "Finish"
+9. click Ok to exit the Preferences dialog
+
+GET CODE FROM GIT
+
+1. From the main menu, choose Window->Open Perspective->Other
+2. Choose "Git Repository Exploring"
+3. Along the top of the "Git Repositories" view on the left, click on the icon for "Clone a Git Repository" (the icon says GIT on it with a blue arrow)
+4. For the URI field, put in "git://github.com/wew/openStudent.git"
+5. Eclipse should automatically fill in the other fields
+6. Click next
+7. "master" should be selected, click Next
+8. Choose a location for your local repository (can be anywhere), and hit Finish
+
+MAKE PROJECT FROM YOUR COPY OF CODE
+ 
+1. You should now have a repository called "openStudent" listed in your Git Repositories
+2. Right-click on that repository
+3. Choose "Import Projects..."
+4. Choose "Import as general project"
+5. Click next, choose a name for the project, then click Finish
+6. From the main menu, choose "Window->Open Perspective->Other"
+7. Choose "Java EE"
+
+START CONFIGURING THE PROJECT
+
+1. In the Project Explorer on the left, select the open student project
+2. From the main menu, choose Project->Properties
+3. Choose "Project Facets" on the left
+4. Click on the "Convert to faceted form" link
+5. Click ok
+
+6. From the main menu, choose Project->Properties
+7. Click "Java Build path"
+8. Choose the "Source" tab
+9. There should already be a "openStudent/src/main/java" entry there
+10. Click "Add Folder..." and add "openStudent/src/main/resources"
+11. Click Ok.
+
+12. From the main menu, choose Project->Properties
+13. Click on Project Facets
+14. Add the "Dynamic Web Module"
+15. Click on the "Runtimes" tab on the right.
+16. Add "Apache Tomcat v7.0"
+
+17. Add the "JavaServer Faces" and "JPA" project facets
+18. Click on the "Further configuration required" beneath the list of project facets
+19. For the JPA facet, the JPA implementation type should be set to "Disable Library Configuration"
+20. For the Web Module facet, the content directory should be "WebContent"
+21. For the JSF facet, 
+ a) click on the little disk icon on the right in the "JSF Implementation Library" section
+ b) choose "JSF 2.0 Mojarra"
+ c) go though the necessary steps until it's downloaded
+ d) Make sure the "Include libraries with this application" is selected
+ e) Uncheck the "Configure JSF servlet in deployment descriptor"
+22. Click OK
+23. Let Eclipse process things for a while
+
+DOWNLOAD ADDITIONAL JAR LIBRARIES
+
+1. You need to copy some additional .jar files in the WebContent/WEB-INF/lib directory of the project (just drag them there)
+2. Get EclipseLink
+ a) Go to http://www.eclipse.org/eclipselink/downloads
+ b) Get an EclipseLink 2.3 installer zip
+ c) In that zip file, get eclipselink/jlib/eclipselink.jar
+ d) Also get eclipselink/jlib/jpa/javax.persistence_2.0.3.v.....
+3. Get slf4j
+ a) Go to http://slf4j.org/download.html
+ b) Download slf4j-1.6.4.zip
+ c) In that zip file, get slf4j-1.6.4/slf4j-api-1.6.4.jar
+4. Get Primefaces
+ a) Go to http://primefaces.org/downloads.html
+ b) Download a copy of the version 3.1 Binary jar
+5. Get the Primefaces Cupertino theme
+ a) Go to http://repository.primefaces.org/org/primefaces/themes/cupertino/1.0.2/
+ b) Download the cupertino-1.0.2.jar
+
+CONFIGURE A SERVER
+
+1. In the bottom right, choose the Servers tab
+2. Right-click in that window, and choose New->Server
+3. A dialog should pop up with the information already filled in for starting a new Tomcat v7 server
+4. Click next
+5. Move the OpenStudent project from the available column to the configured column
+6. Click Finish
+
+START RUNNING IT
+
+1. In the bottom right, choose the Servers tab
+2. Right-click on the Tomcat server
+3. Choose Debug
+4. Wait for it to startup
+5. Open a web browser, and go to http://localhost:8080/openStudent/welcome.xhtml
