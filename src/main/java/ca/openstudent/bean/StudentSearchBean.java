@@ -13,7 +13,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.validator.ValidatorException;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.examples.domain.Car;
 import org.primefaces.model.LazyDataModel;
 
 import ca.openstudent.Student;
