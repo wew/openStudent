@@ -1,19 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-	
-<ui:composition template="/templates/basicTemplate.xhtml">
+<ui:composition  
+  xmlns="http://www.w3.org/1999/xhtml"   
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:p="http://primefaces.org/ui"
+  template="/templates/basicTemplate.xhtml">
 <ui:define name="content">
-<br /><center>
-            <h1><h:outputText value="Login Failed!"/></h1>
-            <br /><br />
-            <h:outputLink value="">Please try again</h:outputLink>
-            </center>
+<center>
+<h:form>
+  <h1><h:outputText value="Login Failed!"/></h1>
+  <h:commandLink action="login.xhtml" value="Please try again."/>
+</h:form>
+</center>
 </ui:define>
 </ui:composition>
-</html>
+
