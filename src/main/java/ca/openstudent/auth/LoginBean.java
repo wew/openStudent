@@ -1,5 +1,6 @@
 package ca.openstudent.auth;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
@@ -12,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-@ManagedBean (name="sessionBean")
+@ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable {
 
@@ -67,13 +68,15 @@ public class LoginBean implements Serializable {
      * Logs the current user out by invalidating the session.
      * @return &quot;logout&quot; which is used by the {@literal faces-config.xml}
      * to redirect back to the {@literal index.xhtml} page.
+     * @throws IOException 
      */
-    public String logout() 
+    public String logout() throws IOException 
     {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
+    	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+       
         externalContext.invalidateSession();
-        return "logout";
+       
+        return "LOGOUT";
     }
 
     /**
@@ -88,7 +91,7 @@ public class LoginBean implements Serializable {
 			principal = context.getExternalContext().getUserPrincipal().toString();
 		} catch (Exception e) {
 			//Go to login page
-			return "login";
+			return "welcome.xhtml";
 		}
     	return principal;
     }
