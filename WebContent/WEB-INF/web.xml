@@ -69,9 +69,6 @@
     <param-value>true</param-value>
   </context-param>
   
-  <listener>
-    <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-  </listener>
   <welcome-file-list>
     <welcome-file>faces/welcome.xhtml</welcome-file>
   </welcome-file-list>
