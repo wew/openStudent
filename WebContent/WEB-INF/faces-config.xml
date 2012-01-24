@@ -38,31 +38,17 @@
 	</managed-bean>
 	 -->
 	<!--  /** Navigation Rules **/ -->
+	
+	
 	<navigation-rule>
-		<display-name>login.xhtml</display-name>
-		<from-view-id>/login.xhtml</from-view-id>
+		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-outcome>FAIL</from-outcome>
-			<to-view-id>/loginError.xhtml</to-view-id>
+			<from-outcome>LOGOUT</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect/>
 		</navigation-case>
 	</navigation-rule>
-	<navigation-rule>
-		<display-name>login.xhtml</display-name>
-		<from-view-id>/login.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>SUCCESS</from-outcome>
-			<to-view-id>/welcome.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>views/student/search.xhtml</display-name>
-		<from-view-id>/views/student/search.xhtml</from-view-id>
-		<navigation-case>
-			<from-action>#{studentSearch.search}</from-action>
-			<from-outcome>views/student/search.xhtml</from-outcome>
-			<to-view-id>/views/student/search.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
+		
 
 	<!--  /** Client Behaviors **/ -->
 	<!--  still need to include in tag-lib.xml  -->
