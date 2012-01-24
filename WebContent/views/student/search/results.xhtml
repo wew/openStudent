@@ -12,7 +12,7 @@
 		value="#{studentSearch.results}" 
 		styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row"
 		selection="#{studentSearch.selectedStudent}" selectionMode="single" rowKey="#{s.id}">
-	<p:ajax event="rowSelect" oncomplete="studentDialog.show()" />
+	<p:ajax event="rowSelect" listener="#{studentSearch.onRowSelect}"  update=":form:resultTable:display" oncomplete="studentDialog.show()" />
 	<p:column>
 		  
 			<f:facet name="header">
@@ -77,8 +77,7 @@
             </f:facet>  
   
             <h:outputText value="Name:" />  
-            <h:outputText value="#{studentBean.selectedStudent}" style="font-weight:bold" />  
- 
+            <h:outputText style="font-weight:bold" value="#{studentSearch.selectedStudent.legalLastName}, #{studentSearch.selectedStudent.legalFirstName}" />
         </h:panelGrid>  
     </p:dialog>  
 	
