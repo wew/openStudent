@@ -7,7 +7,7 @@ import java.util.Map;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import ca.openstudent.Student;
+import ca.openstudent.model.Student;
 
 public class StudentDataModel extends LazyDataModel<Student> {
 

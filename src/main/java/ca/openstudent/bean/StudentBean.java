@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 //import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -21,9 +23,10 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.ToggleEvent;
 
-import ca.openstudent.Student;
+import ca.openstudent.model.Student;
 
-@ManagedBean (name="student")
+@ManagedBean (name="studentBean")
+@ViewScoped
 public class StudentBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +36,7 @@ public class StudentBean implements Serializable {
 	
 	private boolean sortAscending = true;
 	
-	//@ManagedProperty ("#{student}")
+	@ManagedProperty ("#{student}")
 	private Student student;
 
 	public StudentBean(){
@@ -58,9 +61,10 @@ public class StudentBean implements Serializable {
 		return this.student;
 	}
 	
-	public Student getDetails() {
-		return student;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
+	
 	public String showDetails(Student student)
     {
 		this.student = student;

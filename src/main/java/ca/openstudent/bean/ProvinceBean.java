@@ -8,9 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
-import ca.openstudent.Province;
 import ca.openstudent.dao.ProvinceDao;
 import ca.openstudent.dao.impl.ProvinceDaoImpl;
+import ca.openstudent.model.Province;
 
 @ManagedBean (name="province")
 @SessionScoped

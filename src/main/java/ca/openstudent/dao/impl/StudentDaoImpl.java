@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import ca.openstudent.Name;
-import ca.openstudent.Student;
 import ca.openstudent.dao.BaseDAO;
+import ca.openstudent.model.Student;
 
 public class StudentDaoImpl extends BaseDAO {
 

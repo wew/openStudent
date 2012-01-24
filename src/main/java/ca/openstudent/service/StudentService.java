@@ -1,15 +1,20 @@
 package ca.openstudent.service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import ca.openstudent.Student;
 import ca.openstudent.dao.impl.StudentDaoImpl;
+import ca.openstudent.model.Student;
 
-public class StudentService {
+public class StudentService implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	StudentDaoImpl studentDAO = StudentDaoImpl.Factory.getInstance();//.getInstance();
 		
     public Long create(Student Student)

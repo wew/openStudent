@@ -2,7 +2,7 @@ package ca.openstudent.dao;
 
 import java.util.List;
 
-import ca.openstudent.Province;
+import ca.openstudent.model.Province;
 
 public interface ProvinceDao {
 

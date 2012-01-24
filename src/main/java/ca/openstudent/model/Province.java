@@ -1,4 +1,4 @@
-package ca.openstudent;
+package ca.openstudent.model;
 
 import java.io.Serializable;
 
