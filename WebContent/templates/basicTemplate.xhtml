@@ -38,10 +38,10 @@
 	
 	
 	<p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="false" collapsible="false">
-	   <h:form>
-	     <li><h:commandLink action="/views/student/home.xhtml" value="Go to Students Home" /></li>
-         <li><h:commandLink action="/views/student/search.xhtml" value="Go to Student Search" /></li>
-		 </h:form>
+	  
+	    <li><h:link value="Go to Students Home" outcome="/views/student/home.xhtml" /></li>
+ 		<li><h:link value="Go to Student Search" outcome="/views/student/search.xhtml" /></li>
+		
     </p:layoutUnit>
 	<p:layoutUnit position="east" size="200" header="" resizable="true" closable="true" collapsible="true" effect="drop">
         <h:outputText value="..." />
