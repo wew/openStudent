@@ -7,14 +7,14 @@
 
 	<div id="footer">
 	  <div style="background-color:navy;width:100%;color:white">  
-	  <h:outputLabel value="You are logged in as: #{sessionBean.principal}"></h:outputLabel>
+	  <h:outputLabel value="You are logged in as: #{loginBean.principal}"></h:outputLabel>
 </div>
 	  <div  style="background-color: lightblue;"> 
 	    <h:outputText value="#{msgs.success}"/>
         <h:outputText value="#{msgs.success_message}"/>
      </div>
 <h:form>
-  <p:commandButton type="submit" value="Logout" action="#{loginBean.logout}"/>
+  <p:commandButton type="submit" value="Logout" action="#{loginBean.logout}" ajax="false"/>
 </h:form>
 </div>
 </ui:composition>
