@@ -4,8 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -15,11 +19,12 @@ import javax.faces.validator.ValidatorException;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.LazyDataModel;
 
-import ca.openstudent.Student;
+import ca.openstudent.model.Student;
 import ca.openstudent.service.StudentService;
 import ca.openstudent.view.StudentDataModel;
 
 @ManagedBean(name="studentSearch")
+@SessionScoped
 public class StudentSearchBean implements Serializable {
 
 	/**
@@ -34,7 +39,6 @@ public class StudentSearchBean implements Serializable {
 	private String id;
 	
 	private Student selectedStudent;
-	private LazyDataModel<Student> studentDataModel;  
 	
 	private int keyCode; 
 	
@@ -58,7 +62,6 @@ public class StudentSearchBean implements Serializable {
     
 	public StudentSearchBean() {
 		super();
-		studentDataModel = new StudentDataModel(results);  
 	}
 
 	/**
@@ -202,8 +205,6 @@ public class StudentSearchBean implements Serializable {
 		if(results.isEmpty()) {
 			rendered = false;
 		}
-		System.out.println("FindByName AjaxBehaviorEvent called");
-		
 	}
 	
 	/**
@@ -219,23 +220,21 @@ public class StudentSearchBean implements Serializable {
 	}  
 
 	public Student getSelectedStudent() {  
+		System.out.println("get Student" + selectedStudent);
 		 return selectedStudent;  
 	}  
 
-	public void setSelectedStudent(Student selectedStudent) {  
-
-			this.selectedStudent = selectedStudent;  
+	public void setSelectedStudent(Student student) {  
+			System.out.println("Setting Student" + student);
+			this.selectedStudent = student;
 	}  
 	
-	public LazyDataModel<Student> getStudentDataModel() {  
-        return studentDataModel;  
-    }
-
 	//TODO:
 	 public void onRowSelect(SelectEvent event) {
 		 
-		 
-	        //FacesMessage msg = new FacesMessage("Student Selected", ((Student) event.getObject()).getModel());
+		 System.out.println("Row Select" + event.toString());
+		 this.selectedStudent = (Student)event.getObject();
+	        //FacesMessage msg = new FacesMessage("Student Selected", event.toString());
 
 	        //FacesContext.getCurrentInstance().addMessage(null, msg);
 	    }
