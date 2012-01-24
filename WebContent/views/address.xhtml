@@ -5,28 +5,31 @@
   xmlns:p="http://primefaces.org/ui">
 
 <h:panelGrid columns="3" bgcolor="#eff5fa">
-  	 	<h:outputLabel value="Street number &amp; name:"/>
-             <h:inputText id="#{idprefix}address1" />
-             <h:message for="#{idprefix}address1" />
-
-  	 	<h:outputLabel value="Address 2:"/>
-             <h:inputText id="#{idprefix}address2" />
-             <h:message for="#{idprefix}address2" />
-             
-             <h:outputLabel value="City:"/>
-             <h:inputText id="#{idprefix}city" />
-             <h:message for="#{idprefix}city" />
-             
-             <h:outputLabel value="Province:"/>
-             <h:selectOneMenu value="#{province.selectedProvince}" id="#{idprefix}province">
-             	<f:selectItems value="#{province.selectProvinces}" />
-             	 <f:converter converterId="provinceConverter" />
-             </h:selectOneMenu>
-             <h:message for="#{idprefix}province" />
-             
-             <h:outputLabel value="Postal Code:"/>
-             <h:inputText id="#{idprefix}postalCode" />
-             <h:message for="#{idprefix}postalCode" />
-
+	<h:outputLabel value="Street number &amp; name:"/>
+	<h:inputText id="#{idprefix}address1" />
+	<h:message for="#{idprefix}address1" />
+	
+	<h:outputLabel value="Address 2:"/>
+	<h:inputText id="#{idprefix}address2" />
+	<h:message for="#{idprefix}address2" />
+	
+	<h:outputLabel value="City:"/>
+	<h:inputText id="#{idprefix}city" />
+	<h:message for="#{idprefix}city" />
+	
+	<h:outputLabel value="Province:"/>
+	<h:selectOneMenu value="#{province.selectedProvince}" id="#{idprefix}province">
+		<f:selectItems value="#{province.selectProvinces}" />
+		<f:converter converterId="provinceConverter" />
+	</h:selectOneMenu>
+	<h:message for="#{idprefix}province" />
+	
+	<h:outputLabel value="Country"/>
+	<h:inputText id="#{idprefix}country" />
+	<h:message for="#{idprefix}country" />
+	
+	<h:outputLabel value="Postal Code:"/>
+	<h:inputText id="#{idprefix}postalCode" />
+	<h:message for="#{idprefix}postalCode" />
 </h:panelGrid>
 </ui:composition>
