@@ -6,9 +6,10 @@
 	
     <persistence-unit name="openStudent" transaction-type="RESOURCE_LOCAL"> 
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-	 <class>ca.openstudent.Student</class>
+	 <class>ca.openstudent.model.Student</class>
 	 <class>ca.openstudent.auth.Role</class>
 	 <class>ca.openstudent.auth.User</class>
+	 <class>ca.openstudent.model.Address</class>
 	
        <properties>
 	    <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
