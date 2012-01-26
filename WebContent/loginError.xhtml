@@ -4,13 +4,14 @@
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:p="http://primefaces.org/ui"
   template="/templates/basicTemplate.xhtml">
+  
 <ui:define name="content">
-<center>
-<h:form>
-  <h1><h:outputText value="Login Failed!"/></h1>
-  <h:commandLink action="welcome.xhtml" value="Please try again."/>
-</h:form>
-</center>
+  <center>
+    <h1><h:outputText value="Login Failed!"/></h1>
+    <h:link value="Please try again...." outcome="welcome" />
+  </center>
 </ui:define>
-</ui:composition>
 
+<ui:define name="menu"></ui:define>
+
+</ui:composition>
