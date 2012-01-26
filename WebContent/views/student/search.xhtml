@@ -20,14 +20,12 @@
 	    	maxResults="5"  
 	    	required="true"
 	        value="#{studentSearch.name}"
-	        completeMethod="#{studentSearch.completeFindByName}"
-	    >  
-    	
-    	  	<f:ajax event="keyup" listener="#{studentSearch.findByName}" render="searchResults nameMessage" />
-    	
+	        completeMethod="#{studentSearch.completeFindByName}">
+	        
+	  <f:ajax event="keyup" listener="#{studentSearch.findByName}" render="searchResults nameMessage" />
 	</p:autoComplete>
-	<p:message id="nameMessage" for="searchAnyName" style="color:red" />
 	
+	<p:message id="nameMessage" for="searchAnyName" style="color:red" />
 	
 	<h:outputLabel value="Gender:">
 	  <h:outputText value="*" style="color:red; float:right"  />
@@ -39,11 +37,8 @@
 	</p:selectOneRadio>
 	<p:message id="genderMessage" for="searchGender" style="color:red" />
 	
-	
-
     <h:outputLabel value="Date of Birth:" />
     <p:inputText id="searchDOBString" value="#{studentSearch.dobString}" required="false">
-   
     	<f:ajax event="keyup" listener="#{studentSearch.addHyphensToDOB}" render="searchDOBMessageString searchDOBString" />	
     </p:inputText>
     <p:message id="searchDOBMessageString" for="searchDOBString" style="color:red" />
@@ -61,16 +56,11 @@
 			required="false" label="Student ID"
 			validator="#{studentSearch.validateStudentID}">
 		</p:inputText>
-	   
     <p:message id="studentIDMessage" for="searchStudentID" style="color:red" />
    
-    <p:commandButton id="searchButton" type="submit" value="Search" action="#{studentSearch.search}"  ajax="false" />
-	<p:commandButton value="Reset" type="submit" immediate="true" actionListener="#{studentSearch.clear}">
-	 	<f:ajax listener="#{studentSearch.clear}" render="searchResults" />
-	 	 <f:ajax render="form" /> 
-	 </p:commandButton>
-	  
-	 <p:commandButton  immediate="true" type="reset" value="Clear" ajax="false"/>
+    <p:commandButton id="searchButton" type="submit" value="Search" action="#{studentSearch.search}" ajax="false" />
+	<p:commandButton id="resetButton"  type="submit" value="Clear"  action="#{studentSearch.clear}"  ajax="false" immediate="true" />
+
  </h:panelGrid>
  </p:panel>
  
@@ -81,10 +71,8 @@
 		<ui:param name="studentSearch" value="#{studentSearch}" />
 	</ui:include>
  </h:outputLabel>
- <p:commandButton immediate="true" type="submit" value="Create New" ajax="false" action="/views/student/create"/>
 </p:panel>
 
 </h:form>
 </ui:define>
 </ui:composition>
-
