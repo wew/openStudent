@@ -8,9 +8,7 @@ import java.util.Map;
 import ca.openstudent.dao.ProvinceDao;
 import ca.openstudent.model.Province;
 
-public class ProvinceDaoImpl implements ProvinceDao{
-
-	
+public class ProvinceDaoImpl implements ProvinceDao {
 	
 	private static Map<String, Province> provincesMap;
 	
@@ -26,7 +24,9 @@ public class ProvinceDaoImpl implements ProvinceDao{
 	{
 		this.loadProvincesMap();
 	}
+	
 	private void loadProvincesMap() {
+		
 		provincesMap = new LinkedHashMap<String, Province>();
 		
 		provincesMap.put("BC", new Province("British Columbia"));
@@ -44,5 +44,4 @@ public class ProvinceDaoImpl implements ProvinceDao{
 		provincesMap.put("YT", new Province("Yukon"));
 
 	}
-
 }
