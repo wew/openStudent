@@ -77,7 +77,9 @@
             </f:facet>  
   
             <h:outputText value="Name:" />  
-            <h:outputText style="font-weight:bold" value="#{studentSearch.selectedStudent.legalLastName}, #{studentSearch.selectedStudent.legalFirstName}" />
+            <h:outputText style="font-weight:bold" value="#{studentSearch.selectedStudent.legalLastName}, #{studentSearch.selectedStudent.legalFirstName} (#{studentSearch.selectedStudent.legalMiddleName})" />
+            <h:outputText style="font-weight:bold" value="#{studentSearch.selectedStudent.usualLastName}, #{studentSearch.selectedStudent.usualFirstName} (#{studentSearch.selectedStudent.usualMiddleName})" />
+            
         </h:panelGrid>  
     </p:dialog>  
 	
