@@ -4,24 +4,18 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.validator.ValidatorException;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.model.LazyDataModel;
 
 import ca.openstudent.model.Student;
 import ca.openstudent.service.StudentService;
-import ca.openstudent.view.StudentDataModel;
 
 @ManagedBean(name="studentSearch")
 @SessionScoped
@@ -55,8 +49,8 @@ public class StudentSearchBean implements Serializable {
 	private static List<Student> students; 
 	private List<Student> results; 
 	
-    private final static String EDIT_STUDENT = "views/student/edit.xhtml";
-    private final static String SEARCH_STUDENTS = "views/student/search.xhtml";
+    private final static String EDIT_STUDENT = "/views/student/edit";
+    private final static String SEARCH_STUDENTS = "/views/student/search";
 	
     StudentService studentService = new StudentService();
     
@@ -92,18 +86,25 @@ public class StudentSearchBean implements Serializable {
 		this.name = name;
 	}
 	
-	
-	
-	//Business action
-	public void clear(ActionEvent e) {
-		System.out.println("clear StudentSearchBean business action called");
+	/**
+	 * Reset the form values.
+	 * 
+	 * @return String outcome
+	 */
+	public String clear() {
+
+		this.setSelectedStudent(null);
+		this.setName("");
+		this.setGender("");
+		this.setDobString("");
+		this.setPen("");
+		this.setId("");
+		
+		this.results.clear();
+		
+		return SEARCH_STUDENTS;
 	}
-	
-	//Listener action
-	public void clear(AjaxBehaviorEvent abe) {
-		System.out.println("clear StudentSearchBean listener action called");
-    }
-	
+
 	public List<Student> getStudents() {
 		
 		return students;		
@@ -129,7 +130,6 @@ public class StudentSearchBean implements Serializable {
 	 */
 	public String search() {
 
-		System.out.println("StudentSearchBean search()");
 		rendered = true;
 
 		results = null;
@@ -219,25 +219,23 @@ public class StudentSearchBean implements Serializable {
 	      
 	}  
 
-	public Student getSelectedStudent() {  
-		System.out.println("get Student" + selectedStudent);
-		 return selectedStudent;  
+	public Student getSelectedStudent() {
+		
+		return selectedStudent;
+		
 	}  
 
-	public void setSelectedStudent(Student student) {  
-			System.out.println("Setting Student" + student);
-			this.selectedStudent = student;
+	public void setSelectedStudent(Student student) {
+		
+		this.selectedStudent = student;
+		
 	}  
 	
-	//TODO:
-	 public void onRowSelect(SelectEvent event) {
-		 
-		 System.out.println("Row Select" + event.toString());
-		 this.selectedStudent = (Student)event.getObject();
-	        //FacesMessage msg = new FacesMessage("Student Selected", event.toString());
-
-	        //FacesContext.getCurrentInstance().addMessage(null, msg);
-	    }
+	public void onRowSelect(SelectEvent event) {
+		
+		this.selectedStudent = (Student)event.getObject();
+	
+	}
 
 
 	/**
