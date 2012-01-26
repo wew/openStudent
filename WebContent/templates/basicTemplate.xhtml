@@ -38,8 +38,7 @@
 	
 	<p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="false" collapsible="false">
 		<ui:insert name="menu">
-		  <li><h:link value="Go to Students Home" outcome="/views/student/home.xhtml" /></li>
-		<li><h:link value="Go to Student Search" outcome="/views/student/search.xhtml" /></li>
+		  <ui:include src="/templates/menu.xhtml" />
 		</ui:insert>
     </p:layoutUnit>
     
