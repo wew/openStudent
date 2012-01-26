@@ -12,7 +12,7 @@
       #{msgs.windowTitle}
     </ui:insert>
   </title>
-    <h:outputStylesheet name="default.css" library="css" />
+  <h:outputStylesheet name="default.css" library="css" />
 </h:head>
 
 <h:body>
@@ -23,9 +23,9 @@
 	
 	<p:layoutUnit position="north" size="100" header="" resizable="true" closable="false" collapsible="false">
 	<div id="pageHeading">
-	<ui:insert name="heading">
-		<ui:include src="/templates/pageHeading.xhtml"/>
-	</ui:insert>
+		<ui:insert name="heading">
+			<ui:include src="/templates/pageHeading.xhtml"/>
+		</ui:insert>
 	</div>
 	</p:layoutUnit>
 	
@@ -36,13 +36,13 @@
 	</div>
 	</p:layoutUnit>
 	
-	
 	<p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="false" collapsible="false">
-	  
-	    <li><h:link value="Go to Students Home" outcome="/views/student/home.xhtml" /></li>
- 		<li><h:link value="Go to Student Search" outcome="/views/student/search.xhtml" /></li>
-		
+		<ui:insert name="menu">
+		  <li><h:link value="Go to Students Home" outcome="/views/student/home.xhtml" /></li>
+		<li><h:link value="Go to Student Search" outcome="/views/student/search.xhtml" /></li>
+		</ui:insert>
     </p:layoutUnit>
+    
 	<p:layoutUnit position="east" size="200" header="" resizable="true" closable="true" collapsible="true" effect="drop">
         <h:outputText value="..." />
     </p:layoutUnit>
