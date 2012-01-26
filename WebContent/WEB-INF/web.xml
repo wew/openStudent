@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  
   <display-name>openStudent</display-name>
+  
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
+	 <!-- Production, Development, UnitTest, SystemTest, Extension --> 
   </context-param>
   
+  <welcome-file-list>
+    <welcome-file>faces/welcome.xhtml</welcome-file>
+  </welcome-file-list>
+  
   <servlet>
-    <servlet-name>FacesServlet</servlet-name>
+    <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
   <servlet-mapping>
-    <servlet-name>FacesServlet</servlet-name>
+    <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
-    <servlet-name>FacesServlet</servlet-name>
+    <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
 
   <security-constraint>
     <display-name>Security Constraint</display-name>
-    <web-resource-collection>
-      <web-resource-name>XHTML</web-resource-name>
-      <description>openStudent Secure Web Application</description>
-      <url-pattern>*.xhtml</url-pattern>
-
+	<web-resource-collection>
+      <web-resource-name>openStudent Secure Web Application</web-resource-name>
+      <description>Secure all</description>
+      <url-pattern>/faces/*</url-pattern>
+	  <url-pattern>*.xhtml</url-pattern>
+	  <http-method>GET</http-method> 
+      <http-method>POST</http-method> 
     </web-resource-collection>
+
     <auth-constraint>
       <description>openStudent Roles</description>
       <role-name>manager</role-name>
     </auth-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+    <display-name>Resources</display-name>
+	<web-resource-collection>  
+      <web-resource-name>Resources Allowed</web-resource-name>
+      <description>openStudent css, javascript, images allowed</description>
+      <url-pattern>/faces/javax.faces.resource/*</url-pattern>
+    </web-resource-collection>
   </security-constraint>
   
   <login-config>
@@ -64,12 +85,9 @@
 	<!-- <param-value>cupertino</param-value> --> 
 	<!-- <param-value>dark-hive</param-value>-->
   </context-param>
+  
   <context-param>
-    <param-name>facelets.SKIP_COMMENTS</param-name>
+    <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
     <param-value>true</param-value>
   </context-param>
-  
-  <welcome-file-list>
-    <welcome-file>faces/welcome.xhtml</welcome-file>
-  </welcome-file-list>
 </web-app>
