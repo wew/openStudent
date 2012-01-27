@@ -6,72 +6,81 @@
   xmlns:f="http://java.sun.com/jsf/core"
  >
 
-  <p:panel header="Basic Student Information" 
-  		   toggleable="true" 
-  		   toggleSpeed="500"  
-           toggleListener="#{student.handleToggle}"  
-           onToggleUpdate="growl">
-
-  	<h:panelGrid columns="3" bgcolor="#eff5fa">
-
-  	    <h:outputLabel value="Student ID:"></h:outputLabel>
-  	    <h:inputText id="studentId" value="#{studentBean.student.student.id}" disabled="true"/>
-  	    <h:message for="studentId" />
+<p:panel header="Basic Student Information" 
+		toggleable="true" 
+		toggleSpeed="500"  
+		toggleListener="#{studentBean.handleToggle}"  
+		onToggleUpdate="growl">
+		
+  	<h:panelGrid columns="3">
+  	    <h:outputLabel value="Student ID:" />
+  	    <p:inputText id="studentId" value="#{studentBean.student.id}" disabled="true"/>
+  	    <p:message for="studentId" />
   	    
-  	    <h:outputLabel value="PEN:"></h:outputLabel>
-  	    <h:inputText id="studentPen" value="#{studentBean.student.student.pen}" disabled="true"/>
-        <h:message for="studentPen" />
+  	    <h:outputLabel value="PEN:" />
+        <p:inputText id="studentPen" value="#{studentBean.student.pen}" disabled="false" required="false">
+    		<f:validator validatorId="ExactLengthValidator" />
+			<f:attribute name="exactLength" value="9" />
+    		<f:ajax event="blur" render="penMessage" />
+    	</p:inputText>
+    	<p:message id="penMessage" for="studentPen" style="color:red" />
 
-        <h:outputLabel value="Usual Last Name:"/>
-        <h:inputText id="studentUsualLastName" value="#{studentBean.student.usualLastName }"/>
-  		<h:message for="studentUsualLastName" />
-                  
-        <h:outputLabel value="Usual First Name:"/>
-        <h:inputText id="studentUsualFirstName" value="#{studentBean.student.usualFirstName }"/>
-        <h:message for="studentUsualFirstName" />
-        
-        <ui:remove><!-- <h:outputLabel value="Usual Middle Name:"/>  --></ui:remove>
-        <ui:remove><!-- <h:inputText id="studentUsualMiddleName" value="#{student.details.usualMiddleName }"/>  --></ui:remove>
-        <ui:remove><!-- <h:message for="studentUsualMiddleName" />  --></ui:remove>
-      
         <h:outputLabel value="Legal Last Name:"/>
-        <h:inputText id="studentLegalLastName" value="#{studentBean.student.legalLastName }"/>
-        <h:message for="studentLegalLastName" />
+        <p:inputText id="studentLegalLastName" value="#{studentBean.student.legalLastName}" required="true" requiredMessage="You must enter a Legal Last Name.">
+			<f:ajax event="blur" render="legalLastNameMessage" />
+        </p:inputText>
+        <p:message id="legalLastNameMessage" for="studentLegalLastName" /> 
         
         <h:outputLabel value="Legal First Name:"/>
-        <h:inputText id="studentLegalFirstName" value="#{studentBean.student.legalFirstName }"/>
-        <h:message for="studentLegalFirstName" />
+        <p:inputText id="studentLegalFirstName" value="#{studentBean.student.legalFirstName}"  required="true" requiredMessage="You must enter a Legal First Name.">
+			<f:ajax event="blur" render="legalFirstNameMessage" />
+        </p:inputText>
+        <p:message id="legalFirstNameMessage" for="studentLegalFirstName" />
            
         <h:outputLabel value="Legal Middle Name:"/>
-        <h:inputText id="studentLegalMiddleName" value="#{studentBean.student.legalMiddleName }"/>
-        <h:message for="studentLegalMiddleName" />
-        
+        <p:inputText id="studentLegalMiddleName" value="#{studentBean.student.legalMiddleName}"/>
+        <p:message for="studentLegalMiddleName" />
 
-        <h:outputLabel value="Gender:"/>
-		<h:selectOneRadio id="gender" value="#{studentBean.student.gender}">
+        <h:outputLabel value="Usual Last Name:"/>
+        <p:inputText id="studentUsualLastName" value="#{studentBean.student.usualLastName}" />
+  		<p:message for="studentUsualLastName" />
+                  
+        <h:outputLabel value="Usual First Name:"/>
+        <p:inputText id="studentUsualFirstName" value="#{studentBean.student.usualFirstName}" />
+        <p:message for="studentUsualFirstName" />
+        
+        <h:outputLabel value="Usual Middle Name:"/>
+        <p:inputText id="studentUsualMiddleName" value="#{studentBean.student.usualMiddleName}"/>
+        <p:message for="studentUsualMiddleName" />
+
+       <h:outputLabel value="Gender:"/>
+		<p:selectOneRadio id="gender" value="#{studentBean.student.gender}">
 	    	<f:selectItem itemValue="Female" itemLabel="Female" />
 	    	<f:selectItem itemValue="Male" itemLabel="Male" />
-		</h:selectOneRadio>
-		<h:message for="gender" />
+		</p:selectOneRadio>
+		<p:message for="gender" />
 	
         <h:outputLabel value="Grade:"/>
-        <h:inputText id="studentGrade" value="#{studentBean.student.grade}"/>
-        <h:message for="studentGrade" />
+        <p:inputText id="studentGrade" value="#{studentBean.student.grade}"/>
+        <p:message for="studentGrade" />
 
         <h:outputLabel value="Birthdate:"/>
-        <h:inputText id="studentBirthdate" value="#{studentBean.student.birthdate}"/>
-        <h:message for="studentBirthdate" value="dd-MMM-yyyy" >dd-MMM-yyyy</h:message>
+        <p:inputText id="studentBirthdate" value="#{studentBean.student.birthdate}">
+        	<f:convertDateTime pattern="dd-MMM-yyyy" type="date" />
+        	<f:ajax event="blur" render="studentBirthdateMessage studentCurrentAge" />
+        </p:inputText>
+        <p:message id="studentBirthdateMessage" for="studentBirthdate" value="dd-MMM-yyyy" />
           
         <h:outputLabel value="Current age:"/>
-        <h:inputText id="studentCurrentAge" value="#{studentBean.student.currentAge}"/>
-        <h:message for="studentCurrentAge" />
+        <p:inputText id="studentCurrentAge" value="#{studentBean.student.currentAge}"  disabled="true" />
+        <p:message for="studentCurrentAge" />
 
-	</h:panelGrid>
-	</p:panel>
+		</h:panelGrid>
+</p:panel>
 	<p:panel header="Property Address" 
 			 toggleable="true" 
 			 toggleSpeed="500"  
-             toggleListener="#{student.handleToggle}"  
+             toggleListener="#{studentBean.handleToggle}"  
              onToggleUpdate="growl">  
   	  <ui:include src="/views/address.xhtml" >
   	  	<ui:param name="propertyAddress" value="#{studentBean.student.propertyAddress}" />
@@ -81,13 +90,13 @@
   	<p:panel header="Mailing Address" 
 			 toggleable="true" 
 			 toggleSpeed="500"  
-             toggleListener="#{student.handleToggle}"  
+             toggleListener="#{studentBean.handleToggle}"  
              onToggleUpdate="growl"> 
     	<ui:include src="/views/address.xhtml" >
   	  		<ui:param name="mailingAddress" value="#{studentBean.student.mailingAddress}" />
   	  		<ui:param name="idprefix" value="mail" />
   	  	</ui:include> 
-    </p:panel>
-    
+	
+	</p:panel>
 
 </ui:composition>

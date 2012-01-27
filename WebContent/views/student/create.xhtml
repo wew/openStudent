@@ -10,7 +10,7 @@
   <p:panel header="Create Student">
     <ui:include src="/views/student/basic.xhtml"/>
   </p:panel>
-  <h:commandButton id="createStudent" value="Create Student" action="#{studentBean.create}"/>
+  <p:commandButton id="createStudent" type="submit" value="Create Student" action="#{studentBean.create}" ajax="false"/>	
 </h:form>
 </ui:define>
 </ui:composition>
