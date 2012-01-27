@@ -3,7 +3,6 @@ package ca.openstudent.model;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,7 +23,6 @@ public class Address implements Serializable {
     private String country;
     private String postalCode;
     
-    @OneToOne( mappedBy = "homeAddress, mailAddress" )
     private Student student;
 
     public Address() {
