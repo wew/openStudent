@@ -1,5 +1,6 @@
 package ca.openstudent.dao.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -11,7 +12,13 @@ import ca.openstudent.Name;
 import ca.openstudent.dao.BaseDAO;
 import ca.openstudent.model.Student;
 
-public class StudentDaoImpl extends BaseDAO {
+public class StudentDaoImpl  extends BaseDAO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	private StudentDaoImpl() {
 	}
@@ -86,7 +93,7 @@ public class StudentDaoImpl extends BaseDAO {
 		return nameList;
 	}
 	
-	public List<Student> findByGender(String gender) {
+	private List<Student> findByGender(String gender) {
 		List<Student> studentGenderList = new ArrayList<Student>();
 		
 		for(Entry<Long, Student> e : STUDENTS_TABLE.entrySet()) {
@@ -108,7 +115,6 @@ public class StudentDaoImpl extends BaseDAO {
 		}
 		else listToSearch = this.findByGender(gender);
 	
-		
 		for (Student s : listToSearch) {
 			Student tempStudent = null;
 			if( s.getLegalFirstName().toLowerCase().startsWith(name.toLowerCase())) {
@@ -151,7 +157,6 @@ public class StudentDaoImpl extends BaseDAO {
         STUDENTS_TABLE.put((long) ++i, new Student( i, "Male", new Date(), "Tim", "", "Agnew")); 
         STUDENTS_TABLE.put((long) ++i, new Student( i, "Male", new Date(), "Gregg", "", "Ferrie")); 
        
-        List<Name> names = new ArrayList<Name>();
         Name tempName = new Name();
         for(; i < tempName.getLastNameListSize(); i++) {
 

@@ -49,7 +49,7 @@ public class StudentSearchBean implements Serializable {
 	private static List<Student> students; 
 	private List<Student> results; 
 	
-    private final static String EDIT_STUDENT = "/views/student/edit";
+    //private final static String EDIT_STUDENT = "/views/student/edit";
     private final static String SEARCH_STUDENTS = "/views/student/search";
 	
     StudentService studentService = new StudentService();
@@ -161,6 +161,7 @@ public class StudentSearchBean implements Serializable {
 	 * Add hyphens to the Date of Birth String
 	 * 
 	 * @TODO need to capture backspaces, and not append
+	 * @TODO better to put this in javascript
 	 * 
 	 * @param abe
 	 */
@@ -236,7 +237,6 @@ public class StudentSearchBean implements Serializable {
 		this.selectedStudent = (Student)event.getObject();
 	
 	}
-
 
 	/**
 	 * @param dob the dob to set
