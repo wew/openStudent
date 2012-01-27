@@ -5,16 +5,15 @@ package ca.openstudent.model;
 
 import java.io.Serializable;
 
+import java.util.Calendar;
 import java.util.Date;
 
-import javax.faces.model.ListDataModel;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.primefaces.model.SelectableDataModel;
 /**
  * @author wwhite
  *
@@ -38,7 +37,7 @@ public class Student implements Serializable{
 	private String usualFirstName;
 	private String usualMiddleName;
 	
-	private String gender;
+	private String gender = "";
 	
 	private int grade;
 	
@@ -59,11 +58,9 @@ public class Student implements Serializable{
 	
 	private static long count = 111111;
 	
-	@OneToOne(optional = false)
-    private Address homeAddress;
+	private Address homeAddress;
 	
-	@OneToOne(optional = true)
-    private Address mailAddress;
+	private Address mailAddress;
 
 	public Student(int pen, String gender, Date birthdate, String legalFirstName, String legalMiddleName, String legalLastName) {
 		this(pen, gender, birthdate, legalFirstName, legalMiddleName, legalLastName,"", "", "");
@@ -96,8 +93,6 @@ public class Student implements Serializable{
 		this.usualFirstName = usualFirstName;
 		this.usualMiddleName = usualMiddleName;
 		this.usualLastName = usualLastName;
-
-		
 	}
 	
 	public Student() {
@@ -298,5 +293,43 @@ public class Student implements Serializable{
 	 */
 	public void setMailAddress(Address mailAddress) {
 		this.mailAddress = mailAddress;
+	}
+	
+	/**
+	 * 
+	 * @return Integer current age
+	 */
+	public Integer getCurrentAge() {
+
+		return this.getCurrentAge(this.birthdate);
+	
+	}
+
+	/**
+	 * Calculates current age given birth date.
+	 * @param onDate
+	 * @return Integer age
+	 */
+	private Integer getCurrentAge(Date birthDate) {
+		
+		if (birthDate == null)
+			return null;
+		
+		Calendar today = Calendar.getInstance();
+		Calendar bday = Calendar.getInstance();
+		
+		today.setTime(new Date());
+		bday.setTime(birthDate);
+		
+		int age = today.get(Calendar.YEAR) - bday.get(Calendar.YEAR);
+
+		if (today.get(Calendar.MONTH) < bday.get(Calendar.MONTH)) {
+			age--;
+		} else if (today.get(Calendar.MONTH) == bday.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) < bday.get(Calendar.DAY_OF_MONTH)) {
+			
+			age--;
+		}
+		
+		return age;
 	}
 }

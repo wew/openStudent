@@ -3,27 +3,21 @@ package ca.openstudent.bean;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-
 import java.util.Collections;
 import java.util.Comparator;
-
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-//import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.ToggleEvent;
 
 import ca.openstudent.model.Student;
+import ca.openstudent.service.StudentService;
 
 @ManagedBean (name="studentBean")
 @ViewScoped
@@ -31,18 +25,18 @@ public class StudentBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private List<Student> studentArrayList; 
-	private static List<Student> studentList;
+	private List<Student> studentArrayList = new ArrayList<Student>(); 
+	private static List<Student> studentList = new ArrayList<Student>();
 	
 	private boolean sortAscending = true;
 	
-	@ManagedProperty ("#{student}")
+	//@ManagedProperty ("#{student}")
 	private Student student;
 
+	private StudentService studentService = new StudentService();
+
 	public StudentBean(){
-
-		studentArrayList = studentList;
-
+		this.student = new Student(999999999,"", null, "", "", "");
 	}
 	
 	public void handleToggle(ToggleEvent event) {
@@ -52,17 +46,36 @@ public class StudentBean implements Serializable {
 
 	}  
 
-	
 	public List<Student> getStudentList() {
 		return studentArrayList;
 	}
 	
+	public String create() {
+		System.out.println("create student");
+		if(student != null) {
+			this.studentService.create(student);
+			/**
+			 * @TODO need to clear form, 
+			 */
+			this.student = new Student(999999999,"", null, "", "", "");
+		}
+		
+		return "";
+	}
+	
+	/**
+	 * 
+	 * @return Student
+	 */
 	public Student getStudent() {
+		
 		return this.student;
+	
 	}
 	
 	public void setStudent(Student student) {
-		this.student = student;
+		
+		System.out.println("set student." + this.student);
 	}
 	
 	public String showDetails(Student student)
@@ -159,57 +172,5 @@ public class StudentBean implements Serializable {
 	}
 
 	
-	public Integer getCurrentAge() {
-		return this.getCurrentAge(null);
-	}
-	 /**
-		 * Convenience method: calculates the person's age on a given date based on the birthdate
-		 * 
-		 * @param onDate (null defaults to today)
-		 * @return int value of the person's age
-		 * @should get age before birthday
-		 * @should get age on birthday with no minutes defined
-		 * @should get age on birthday with minutes defined
-		 * @should get age after birthday
-		 * @should get age after death
-		 * @should get age with given date after death
-		 * @should get age with given date before death
-		 * @should get age with given date before birth
-		 */
-		private Integer getCurrentAge(Date onDate) {
-			
-			if (onDate == null)
-				return null;
-			
-			// Use default end date as today.
-			Calendar today = Calendar.getInstance();
-			// But if given, use the given date.
-			if (onDate != null)
-				today.setTime(onDate);
-			
-			// If date given is after date of death then use date of death as end date
-			//if (getDeathDate() != null && today.getTime().after(getDeathDate())) {
-			//	today.setTime(getDeathDate());
-			//}
-			
-			Calendar bday = Calendar.getInstance();
-			bday.setTime(this.student.getBirthdate());
-			
-			int age = today.get(Calendar.YEAR) - bday.get(Calendar.YEAR);
-			
-			// Adjust age when today's date is before the person's birthday
-			int todaysMonth = today.get(Calendar.MONTH);
-			int bdayMonth = bday.get(Calendar.MONTH);
-			int todaysDay = today.get(Calendar.DAY_OF_MONTH);
-			int bdayDay = bday.get(Calendar.DAY_OF_MONTH);
-			
-			if (todaysMonth < bdayMonth) {
-				age--;
-			} else if (todaysMonth == bdayMonth && todaysDay < bdayDay) {
-				// we're only comparing on month and day, not minutes, etc
-				age--;
-			}
-			
-			return age;
-		}
+	
 }
