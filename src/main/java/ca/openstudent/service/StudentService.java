@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import ca.openstudent.dao.impl.StudentDaoImpl;
 import ca.openstudent.model.Student;
@@ -17,16 +16,16 @@ public class StudentService implements Serializable{
 	private static final long serialVersionUID = 1L;
 	StudentDaoImpl studentDAO = StudentDaoImpl.Factory.getInstance();//.getInstance();
 		
-    public Long create(Student Student)
+    public Long create(Student student)
     {
-        if(Student == null)
+        if(student == null)
         {
             throw new RuntimeException("Unable to create Student. Student object is null.");
         }
-        Long StudentId = this.getMaxStudentId();
-        Student.setId((long)StudentId);
+        Long StudentId = student.getId();
+        student.setId((long)StudentId);
         
-        studentDAO.save(Student);
+        studentDAO.save(student);
        
         return StudentId;
     }
@@ -52,7 +51,7 @@ public class StudentService implements Serializable{
 
     public Collection<Student> searchStudents(String Studentname)
     {
-        String searchCriteria = (Studentname == null)? "":Studentname.toLowerCase().trim();
+      //  String searchCriteria = (Studentname == null)? "":Studentname.toLowerCase().trim();
       //  Collection<Student> Students = studentDAO.values();
         Collection<Student> searchResults = new ArrayList<Student>();
        // for (Student Student : Students)
@@ -72,20 +71,6 @@ public class StudentService implements Serializable{
             throw new RuntimeException("Unable to update Student. Student object is null or Student Id ["+Student.getId()+"] is invalid." );
         }
       //  StudentS_TABLE.put(Student.getId(), Student);
-    }
- 
-    protected Long getMaxStudentId()
-    {
-        Set<Long> keys = null;//StudentS_TABLE.keySet();
-        Long maxId = 1L;
-        for (Long key : keys)
-        {
-            if(key > maxId)
-            {
-                maxId = key;
-            }
-        }
-        return maxId;
     }
 
 	public Student find(String Studentname, String password) {
